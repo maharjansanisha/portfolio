@@ -7,6 +7,18 @@
   --color-surface: light-dark(#e6e6e6, #171717);
   --color-surface-hover: light-dark(#dcdcdc, #202020);
 
+  /* Under the homepage grain, which composites it to about `canvas`. */
+  --color-grain-base: light-dark(#ffffff, #000000);
+
+  /* Translucent panels: content behind them shows through, usually blurred. */
+  --color-tile: light-dark(rgb(0 0 0 / 0.07), rgb(255 255 255 / 0.08));
+  --color-tile-hover: light-dark(rgb(0 0 0 / 0.02), rgb(255 255 255 / 0.03));
+  --color-tile-edge: light-dark(rgb(0 0 0 / 0.02), rgb(255 255 255 / 0.06));
+
+  /* Image placeholders: dark in both themes, like the photography. */
+  --color-media: #111111;
+  --color-on-media: #bdbdbd;
+
   /* Text */
   --color-ink: light-dark(#0a0a0a, #f2f2f2);
   --color-ink-secondary: light-dark(#3d3d3d, #bdbdbd);

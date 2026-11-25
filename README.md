@@ -2,7 +2,7 @@
 
 Personal portfolio for [maharjansanisha.com.np](https://maharjansanisha.com.np), showcasing product design work backed by frontend and full-stack development experience.
 
-> Status: project foundation only. Pages, content and visual design come in later tasks. The domain is not connected and nothing is deployed.
+> Status: the homepage is built; other pages are not. The portrait and résumé are still missing (see `src/data/home.ts`). The domain is not connected and nothing is deployed.
 
 ## Stack
 
@@ -25,6 +25,10 @@ npm run dev
 ```
 
 Open <http://localhost:3000>. No environment variables are needed.
+
+## Visitor location
+
+The header shows the visitor's local time and approximate city. The time comes from the browser. The city comes from the `x-vercel-ip-city` header that Vercel adds to requests, which `src/app/api/visitor-city/` returns to the page. No third-party service, GPS permission, cookie or browser storage is used. Without that header, including in local development and on other hosts, the header shows only the time.
 
 ## Scripts
 

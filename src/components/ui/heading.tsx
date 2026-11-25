@@ -3,6 +3,7 @@ import type { ComponentPropsWithRef } from "react";
 import { cn } from "@/lib/cn";
 
 const sizes = {
+  hero: "font-display text-hero",
   display: "font-display text-display",
   title: "text-title",
   "heading-1": "text-heading-1",

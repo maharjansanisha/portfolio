@@ -1,6 +1,6 @@
 # Design system
 
-The visual foundation of the portfolio, implemented with Tailwind CSS 4 tokens and a few React primitives. Pages are not built yet.
+The visual foundation of the portfolio, implemented with Tailwind CSS 4 tokens and a few React primitives. Only the homepage is built.
 
 ## Philosophy
 
@@ -52,6 +52,8 @@ Each `text-*` utility sets size, line height, tracking and weight. Fluid sizes r
 | Label | `text-label` | 14 | 1.4 | -0.005em | 500 |
 | Caption | `text-caption` | 12 | 1.4 | 0 | 500 |
 
+`text-hero` is the homepage title only. It follows the reference's steps instead of scaling fluidly: 48px, then 100px from 700px, 130px from 1024px and 160px from 1440px.
+
 Use lead for one introductory statement per page, and caption for short metadata only. Weights are `font-regular`, `font-medium` and `font-semibold`.
 
 ## Colour
@@ -63,6 +65,12 @@ Defined in `src/styles/tokens/color.css`. Tailwind's default palette is removed,
 | `canvas` | `#f2f2f2` | `#050505` | Primary background |
 | `surface` | `#e6e6e6` | `#171717` | Tiles, secondary background |
 | `surface-hover` | `#dcdcdc` | `#202020` | Hovered or nested surface |
+| `grain-base` | `#ffffff` | `#000000` | Under the homepage grain, which composites it to about `canvas` |
+| `tile` | 7% black | 8% white | Translucent homepage panels over blurred content |
+| `tile-hover` | 2% black | 3% white | Hovered translucent panel |
+| `tile-edge` | 2% black | 6% white | 1px inset edge, through `shadow-tile` |
+| `media` | `#111111` | `#111111` | Image placeholder |
+| `on-media` | `#bdbdbd` | `#bdbdbd` | Text on `media` |
 | `ink` | `#0a0a0a` | `#f2f2f2` | Primary text, primary button |
 | `ink-secondary` | `#3d3d3d` | `#bdbdbd` | Supporting text |
 | `ink-muted` | `#555555` | `#949494` | Labels and metadata |
@@ -97,7 +105,7 @@ Primary button text is at least 12.1:1, and `on-accent` on `accent` at least 9.9
 
 ### Themes
 
-The theme follows the system preference using `light-dark()`, which the build compiles to a fallback for older browsers. Setting `data-theme="light"` or `"dark"` on `<html>` overrides it. The override works on `<html>` only, not on a section. There is no theme toggle yet.
+The theme follows the system preference using `light-dark()`, which the build compiles to a fallback for older browsers. Setting `data-theme="light"` or `"dark"` on `<html>` overrides it. The override works on `<html>` only, not on a section. `ThemeToggle` in `src/components/layout/` sets it and saves the choice; a script in the root layout restores it before the first paint.
 
 ## Spacing
 
@@ -162,6 +170,7 @@ Primitives are in `src/components/ui/`. All are Server Components.
 | --- | --- | --- |
 | `Container` | `as` | Page maximum width and gutter |
 | `Heading` | `level` (1 to 4), `size` | Outline level and appearance are separate |
+| `RollText` | `children` | Label that rolls to a copy while its `group` ancestor is hovered or focused |
 | `Text` | `as`, `size`, `tone` | Tones: `default`, `secondary`, `muted`, `accent`, `success`, `error` |
 | `Button` | `variant` | For actions. Defaults to `type="button"` |
 | `ButtonLink` | `variant` | For navigation styled as a button |
@@ -211,9 +220,11 @@ Conventions:
 
 No animation library is installed.
 
+The homepage's title entrance, title swap, tool marquee and phone header rotation are CSS, in `src/features/home/home.css`. The title swap runs from 1024px.
+
 ## Deferred
 
-These reference features belong to page work and are not implemented: the Home tile layout and its blurred name, grain texture, scroll-linked text reveal, character-by-character headings, the 300px oversized text style, page transitions, parallax, marquee, local time, theme toggle, navigation and footer layouts, project tiles and form fields.
+These reference features belong to later page work and are not implemented: scroll-linked text reveal, the 300px oversized text style, page transitions, smooth scrolling, parallax, the footer, project tiles and form fields.
 
 Before adding the text reveal, make sure unrevealed text stays readable. The reference dims it to 20% opacity.
 

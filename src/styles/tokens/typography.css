@@ -79,3 +79,37 @@
   --text-caption--letter-spacing: 0em;
   --text-caption--font-weight: 500;
 }
+
+/*
+ * Homepage title: steps with the layout instead of scaling fluidly.
+ * Declared after the `--text-*` reset above, which would otherwise remove it.
+ */
+@theme inline {
+  --text-hero: var(--hero-size);
+  --text-hero--line-height: 1;
+  --text-hero--letter-spacing: -0.04em;
+  --text-hero--font-weight: 500;
+}
+
+/* 48, 100, 130 and 160px. */
+:root {
+  --hero-size: 3rem;
+}
+
+@media (width >= 43.75rem) {
+  :root {
+    --hero-size: 6.25rem;
+  }
+}
+
+@media (width >= 64rem) {
+  :root {
+    --hero-size: 8.125rem;
+  }
+}
+
+@media (width >= 90rem) {
+  :root {
+    --hero-size: 10rem;
+  }
+}

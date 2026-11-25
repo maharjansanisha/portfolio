@@ -22,6 +22,19 @@
   box-shadow: var(--shadow-hairline);
 }
 
+/* Slides a switch knob to the right in the dark theme. */
+@utility theme-knob {
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) & {
+      translate: 0.875rem 0;
+    }
+  }
+
+  :root[data-theme="dark"] & {
+    translate: 0.875rem 0;
+  }
+}
+
 /*
  * Underline that draws in from the left. A background (not a pseudo-element)
  * follows links that wrap onto several lines.
