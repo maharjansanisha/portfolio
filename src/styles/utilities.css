@@ -35,6 +35,21 @@
   }
 }
 
+/* The logo file is near-white: shown as is in the dark theme, black in the light. */
+@utility theme-logo {
+  filter: brightness(0);
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) & {
+      filter: none;
+    }
+  }
+
+  :root[data-theme="dark"] & {
+    filter: none;
+  }
+}
+
 /*
  * Underline that draws in from the left. A background (not a pseudo-element)
  * follows links that wrap onto several lines.
