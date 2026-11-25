@@ -4,14 +4,16 @@ export type HeroWord = "about" | "portfolio" | "contact" | "stack" | "resume" | 
 type Portrait = { src: string; alt: string };
 
 type HomeAssets = {
-  /** TODO(owner): add a photo of Sanisha under `public/images/`. */
   portrait: Portrait | null;
   /** TODO(owner): add the résumé PDF or its public link. */
   resumeHref: string | null;
 };
 
 export const homeAssets: HomeAssets = {
-  portrait: null,
+  portrait: {
+    src: "/images/portrait/sanisha-maharjan-portrait.jpg",
+    alt: "Sanisha Maharjan smiling, wearing round glasses and a cream knit sweater under a blue sky",
+  },
   resumeHref: null,
 };
 

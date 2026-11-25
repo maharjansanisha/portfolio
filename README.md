@@ -2,7 +2,7 @@
 
 Personal portfolio for [maharjansanisha.com.np](https://maharjansanisha.com.np), showcasing product design work backed by frontend and full-stack development experience.
 
-> Status: the homepage is built; other pages are not. The portrait and résumé are still missing (see `src/data/home.ts`). The domain is not connected and nothing is deployed.
+> Status: the homepage is built; other pages are not. The résumé is still missing (see `src/data/home.ts`). The domain is not connected and nothing is deployed.
 
 ## Stack
 
