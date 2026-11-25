@@ -5,14 +5,19 @@ import { Text } from "@/components/ui/text";
 import { siteConfig } from "@/config/site";
 
 import { CityTime } from "./city-time";
+import { RoleRotator } from "./role-rotator";
 import { ThemeToggle } from "./theme-toggle";
 
 const navText = "text-label tablet:text-body tablet:font-medium";
 
 export function SiteHeader() {
   return (
-    <header className="flex items-center justify-between gap-2 p-4 tablet:p-6">
-      <div className="flex min-w-0 items-center gap-8 tablet:gap-12 laptop:gap-30">
+    <header className="flex items-center justify-between gap-2 p-4 max-[16.5rem]:flex-wrap tablet:p-6">
+      {/*
+       * When the row runs short (a very narrow screen or large text) the first gap
+       * shrinks. Below 16.5rem the role and time move to their own line.
+       */}
+      <div className="flex min-w-0 items-center gap-[clamp(0.5rem,calc(100vw-16rem),2rem)] max-[16.5rem]:contents tablet:gap-12 laptop:gap-30">
         <Link href="/" className={`relative shrink-0 ${navText} focus-visible:outline-offset-8 after:absolute after:-inset-x-2 after:-inset-y-3`}>
           {/*
            * Sized to the artwork, not the SVG's padded canvas. The negative margin
@@ -32,9 +37,9 @@ export function SiteHeader() {
           <span className="sr-only">, home</span>
         </Link>
         {/* On phones the role and the local time take turns in one slot. */}
-        <div className="header-rotator grid min-w-0 overflow-hidden tablet:block">
-          <Text as="div" className={`${navText} whitespace-nowrap`}>
-            {siteConfig.role}
+        <div className="header-rotator grid min-w-0 overflow-hidden max-[16.5rem]:order-last max-[16.5rem]:basis-full tablet:block">
+          <Text as="div" className={`${navText} whitespace-nowrap max-[16.5rem]:whitespace-normal`}>
+            <RoleRotator roles={siteConfig.roles} />
           </Text>
           <Text as="div" className={`${navText} min-w-0 tablet:hidden`}>
             <CityTime />
