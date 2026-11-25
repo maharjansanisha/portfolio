@@ -1,0 +1,15 @@
+/* Motion: calm, decelerating, no bounce. */
+@theme {
+  --ease-*: initial;
+  --ease-standard: cubic-bezier(0.44, 0, 0.56, 1);
+  --ease-settle: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-*: initial;
+
+  --transition-duration-fast: 150ms; /* colour and press feedback */
+  --transition-duration-base: 300ms; /* underlines, small movement */
+  --transition-duration-slow: 600ms; /* entrances and large surfaces */
+
+  --default-transition-duration: var(--transition-duration-fast);
+  --default-transition-timing-function: var(--ease-standard);
+}

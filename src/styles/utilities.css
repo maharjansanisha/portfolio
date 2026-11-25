@@ -1,0 +1,54 @@
+/* Composite utilities that single tokens cannot express. */
+
+/* 4 columns on phones, 8 from tablet, 12 from laptop. */
+@utility layout-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--tile-gap);
+
+  @variant tablet {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+
+  @variant laptop {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+}
+
+/* The large rounded panel. Use for tiles that group or link to content. */
+@utility surface-tile {
+  border-radius: var(--radius-tile);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-hairline);
+}
+
+/*
+ * Underline that draws in from the left. A background (not a pseudo-element)
+ * follows links that wrap onto several lines.
+ */
+@utility link-reveal {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  padding-bottom: 2px;
+  transition-property: background-size, color;
+  transition-duration: var(--transition-duration-base);
+  transition-timing-function: var(--ease-settle);
+
+  &:focus-visible,
+  &[aria-current="page"] {
+    background-size: 100% 1px;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      background-size: 100% 1px;
+    }
+  }
+
+  /* Forced colours drop background images. */
+  @media (forced-colors: active) {
+    text-decoration-line: underline;
+  }
+}

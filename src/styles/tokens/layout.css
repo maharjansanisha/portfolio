@@ -1,0 +1,59 @@
+/* Spacing, widths, breakpoints, shape. */
+@theme {
+  /* Numeric spacing utilities are multiples of this 4px unit. */
+  --spacing: 0.25rem;
+
+  --breakpoint-*: initial;
+  --breakpoint-tablet: 43.75rem; /* 700px */
+  --breakpoint-laptop: 64rem; /* 1024px */
+  --breakpoint-desktop: 90rem; /* 1440px */
+
+  --container-*: initial;
+  --container-page: 120rem; /* 1920px */
+  --container-statement: 60rem; /* large headings and lead text */
+  --container-reading: 40rem; /* long-form text. Not `prose`: Tailwind reserves that. */
+
+  --radius-*: initial;
+  --radius-control: 0.75rem;
+  --radius-media: 1rem;
+  --radius-tile: var(--tile-radius);
+
+  --shadow-*: initial;
+  --inset-shadow-*: initial;
+  --shadow-hairline: inset 0 0 0 1px var(--color-line);
+}
+
+/*
+ * Responsive semantic spacing: `px-gutter`, `py-section`, `gap-stack`, `gap-tile`.
+ * Do not name a spacing token after a display value (`block`, `grid`, `flex`):
+ * Tailwind would also make `inline-<name>` set a width, breaking `inline-block`.
+ */
+@theme inline {
+  --spacing-gutter: var(--page-gutter);
+  --spacing-section: var(--section-space);
+  --spacing-stack: var(--stack-space);
+  --spacing-tile: var(--tile-gap);
+}
+
+:root {
+  --page-gutter: 1rem;
+  --section-space: 4rem;
+  --stack-space: 2rem;
+  --tile-gap: 1rem;
+  --tile-radius: 1.5rem;
+}
+
+@media (width >= 43.75rem) {
+  :root {
+    --page-gutter: 2rem;
+    --section-space: 5rem;
+    --stack-space: 3rem;
+    --tile-radius: 2rem;
+  }
+}
+
+@media (width >= 64rem) {
+  :root {
+    --section-space: 7.5rem;
+  }
+}

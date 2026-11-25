@@ -4,7 +4,7 @@ The project is organised by feature. Routes stay thin, and each feature owns the
 
 ## Folders
 
-Folders are created when their first file is needed, so the repository has no empty placeholders. Today only `src/app` and `src/config` exist.
+Folders are created when their first file is needed, so the repository has no empty placeholders.
 
 | Path                     | Responsibility                                                              |
 | ------------------------ | --------------------------------------------------------------------------- |
@@ -15,6 +15,7 @@ Folders are created when their first file is needed, so the repository has no em
 | `src/components/shared/` | Portfolio-aware components used by two or more features                     |
 | `src/config/`            | Site-wide settings such as name, URL and navigation                         |
 | `src/data/`              | Typed content, such as the project list, kept separate from presentation    |
+| `src/styles/`            | Design tokens, base element styles and composite utilities                   |
 | `src/hooks/`             | React hooks used across features                                            |
 | `src/lib/`               | Framework-independent utilities used across features                        |
 | `src/types/`             | Types shared across features                                                |
@@ -68,7 +69,7 @@ These rules are conventions checked in review. ESLint does not enforce them.
 
 ### Styling
 
-- Use Tailwind utilities. Define design tokens with `@theme` in `src/app/globals.css`.
+- Use Tailwind utilities. Design tokens live in `src/styles/tokens/`, imported by `src/app/globals.css`. See the [design system](design-system.md).
 - Avoid inline styles unless a value is only known at runtime.
 
 ### Accessibility
