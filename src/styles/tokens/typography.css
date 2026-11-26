@@ -1,0 +1,119 @@
+/*
+ * Type scale. Each `text-*` utility sets size, line height, tracking and weight.
+ * Fluid sizes interpolate between 390px and 1440px viewports.
+ */
+@theme inline {
+  --font-*: initial;
+  --font-sans: var(--font-open-sauce-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-open-sauce-two), var(--font-open-sauce-sans), ui-sans-serif,
+    system-ui, sans-serif;
+}
+
+@theme {
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  --text-*: initial;
+  --leading-*: initial;
+  --tracking-*: initial;
+
+  /* 64 to 160px */
+  --text-display: clamp(4rem, 1.7714rem + 9.1429vw, 10rem);
+  --text-display--line-height: 1;
+  --text-display--letter-spacing: -0.04em;
+  --text-display--font-weight: 500;
+
+  /* 40 to 80px */
+  --text-title: clamp(2.5rem, 1.5714rem + 3.8095vw, 5rem);
+  --text-title--line-height: 1.05;
+  --text-title--letter-spacing: -0.025em;
+  --text-title--font-weight: 500;
+
+  /* 28 to 48px */
+  --text-heading-1: clamp(1.75rem, 1.2857rem + 1.9048vw, 3rem);
+  --text-heading-1--line-height: 1.15;
+  --text-heading-1--letter-spacing: -0.02em;
+  --text-heading-1--font-weight: 500;
+
+  /* 20 to 26px */
+  --text-heading-2: clamp(1.25rem, 1.1107rem + 0.5714vw, 1.625rem);
+  --text-heading-2--line-height: 1.25;
+  --text-heading-2--letter-spacing: -0.02em;
+  --text-heading-2--font-weight: 600;
+
+  /* 18 to 20px */
+  --text-heading-3: clamp(1.125rem, 1.0786rem + 0.1905vw, 1.25rem);
+  --text-heading-3--line-height: 1.3;
+  --text-heading-3--letter-spacing: -0.015em;
+  --text-heading-3--font-weight: 500;
+
+  /* 24 to 40px: large introductory statements */
+  --text-lead: clamp(1.5rem, 1.1286rem + 1.5238vw, 2.5rem);
+  --text-lead--line-height: 1.25;
+  --text-lead--letter-spacing: -0.03em;
+  --text-lead--font-weight: 400;
+
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.5;
+  --text-body-lg--letter-spacing: -0.01em;
+  --text-body-lg--font-weight: 400;
+
+  --text-body: 1rem;
+  --text-body--line-height: 1.55;
+  --text-body--letter-spacing: -0.01em;
+  --text-body--font-weight: 400;
+
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.5;
+  --text-small--letter-spacing: -0.005em;
+  --text-small--font-weight: 400;
+
+  --text-label: 0.875rem;
+  --text-label--line-height: 1.4;
+  --text-label--letter-spacing: -0.005em;
+  --text-label--font-weight: 500;
+
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1.4;
+  --text-caption--letter-spacing: 0em;
+  --text-caption--font-weight: 500;
+}
+
+/*
+ * Homepage title: steps with the layout instead of scaling fluidly.
+ * Declared after the `--text-*` reset above, which would otherwise remove it.
+ */
+@theme inline {
+  --text-hero: var(--hero-size);
+  --text-hero--line-height: 1;
+  --text-hero--letter-spacing: -0.04em;
+  --text-hero--font-weight: 500;
+}
+
+/*
+ * 48, 100, 130 and 160px. The title is one word and cannot wrap, so on phones it
+ * grows only as far as the screen, less its 1rem side insets, can hold. The word
+ * is about 3.6 times as wide as the font size.
+ */
+:root {
+  --hero-size: min(3rem, (100vw - 2rem) / 3.7);
+}
+
+@media (width >= 43.75rem) {
+  :root {
+    --hero-size: 6.25rem;
+  }
+}
+
+@media (width >= 64rem) {
+  :root {
+    --hero-size: 8.125rem;
+  }
+}
+
+@media (width >= 90rem) {
+  :root {
+    --hero-size: 10rem;
+  }
+}

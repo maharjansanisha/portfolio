@@ -1,0 +1,41 @@
+/* Semantic colour tokens. Each holds its light and dark value in one place. */
+@theme {
+  --color-*: initial;
+
+  /* Backgrounds */
+  --color-canvas: light-dark(#f2f2f2, #050505);
+  --color-surface: light-dark(#e6e6e6, #171717);
+  --color-surface-hover: light-dark(#dcdcdc, #202020);
+
+  /* Under the homepage grain, which composites it to about `canvas`. */
+  --color-grain-base: light-dark(#ffffff, #000000);
+
+  /* Translucent panels: content behind them shows through, usually blurred. */
+  --color-tile: light-dark(rgb(0 0 0 / 0.07), rgb(255 255 255 / 0.08));
+  --color-tile-hover: light-dark(rgb(0 0 0 / 0.02), rgb(255 255 255 / 0.03));
+  --color-tile-edge: light-dark(rgb(0 0 0 / 0.02), rgb(255 255 255 / 0.06));
+
+  /* Image placeholders: dark in both themes, like the photography. */
+  --color-media: #111111;
+  --color-on-media: #bdbdbd;
+
+  /* Text */
+  --color-ink: light-dark(#0a0a0a, #f2f2f2);
+  --color-ink-secondary: light-dark(#3d3d3d, #bdbdbd);
+  --color-ink-muted: light-dark(#555555, #949494);
+  --color-ink-hover: light-dark(#2e2e2e, #d4d4d4);
+
+  /* Lines: `line` is decorative; `line-control` marks control boundaries. */
+  --color-line: light-dark(#d4d4d4, #2a2a2a);
+  --color-line-control: light-dark(#6b6b6b, #707070);
+
+  /* Accent: `accent` is a fill. Use `accent-ink` for accent-coloured text. */
+  --color-accent: light-dark(#7ecc00, #ccf500);
+  --color-accent-ink: light-dark(#355900, #ccf500);
+  --color-on-accent: #0a0a0a;
+
+  /* States */
+  --color-focus: var(--color-ink);
+  --color-success: var(--color-accent-ink);
+  --color-error: light-dark(#a8001c, #ff7a8a);
+}

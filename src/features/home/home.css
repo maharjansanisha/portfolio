@@ -1,0 +1,157 @@
+/* Homepage motion and effects that utilities cannot express cleanly. */
+
+/* Film grain over the whole page. */
+body:has(.home-grain) {
+  background-color: var(--color-grain-base);
+}
+
+.home-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  background: url("/images/textures/grain.png") repeat;
+  background-size: 4rem auto;
+  opacity: 0.08;
+}
+
+/* Title: letters rise in once on load. */
+.hero-letter {
+  display: inline-block;
+  animation: hero-letter-in 700ms var(--ease-settle) backwards;
+}
+
+@keyframes hero-letter-in {
+  from {
+    opacity: 0;
+    transform: translateY(40px) skewY(4deg);
+  }
+}
+
+.hero-word {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  white-space: nowrap;
+  transition: transform var(--transition-duration-slow) var(--ease-settle);
+}
+
+/* Alternative words wait below the clipped title box. */
+.hero-word-alt {
+  transform: translateY(150%) skewY(0deg);
+}
+
+/* Title swap: wide screens only, as in the reference. Pointer wins over focus. */
+@media (width >= 64rem) {
+  .home-stage:not(:has([data-tile]:hover)):has([data-tile]:focus-within) .hero-word-name {
+    transform: translateY(-150%) skewY(12deg);
+  }
+
+  .home-stage:not(:has([data-tile]:hover)):has([data-tile="about"]:focus-within) [data-word="about"],
+  .home-stage:not(:has([data-tile]:hover)):has([data-tile="portfolio"]:focus-within) [data-word="portfolio"],
+  .home-stage:not(:has([data-tile]:hover)):has([data-tile="contact"]:focus-within) [data-word="contact"],
+  .home-stage:not(:has([data-tile]:hover)):has([data-tile="stack"]:focus-within) [data-word="stack"],
+  .home-stage:not(:has([data-tile]:hover)):has([data-tile="resume"]:focus-within) [data-word="resume"] {
+    transform: none;
+  }
+}
+
+@media (width >= 64rem) and (hover: hover) {
+  .home-stage:has([data-tile]:hover) .hero-word-name {
+    transform: translateY(-150%) skewY(12deg);
+  }
+
+  .home-stage:has([data-tile="about"]:hover) [data-word="about"],
+  .home-stage:has([data-tile="portfolio"]:hover) [data-word="portfolio"],
+  .home-stage:has([data-tile="contact"]:hover) [data-word="contact"],
+  .home-stage:has([data-tile="stack"]:hover) [data-word="stack"],
+  .home-stage:has([data-tile="resume"]:hover) [data-word="resume"],
+  .home-stage:has([data-tile="portrait"]:hover) [data-word="portrait"] {
+    transform: none;
+  }
+}
+
+/* Tool icons: 30px a second on larger screens, 20px on phones. */
+.tool-marquee {
+  mask-image: linear-gradient(to right, transparent, #000 25%, #000 75%, transparent);
+}
+
+.tool-marquee-track {
+  animation: tool-marquee 22.4s linear infinite;
+}
+
+@media (width >= 43.75rem) {
+  .tool-marquee-track {
+    animation-duration: 23.5s;
+  }
+}
+
+/* Pointing at the row, or focusing it by keyboard or tap, pauses it. */
+.tool-marquee:is(:hover, :focus) .tool-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes tool-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* With reduced motion the row stands still and can be scrolled instead. */
+@media (prefers-reduced-motion: reduce) {
+  .tool-marquee {
+    overflow-x: auto;
+    mask-image: none;
+  }
+
+  .tool-marquee-track {
+    animation: none;
+  }
+
+  .tool-marquee-track > [aria-hidden] {
+    display: none;
+  }
+}
+
+/* Phone header: the role and local time alternate every 3 seconds. */
+@media (width < 43.75rem) {
+  .header-rotator > * {
+    grid-area: 1 / 1;
+    animation: header-rotate 6s var(--ease-settle) infinite backwards;
+  }
+
+  .header-rotator > :last-child {
+    animation-delay: -3s;
+  }
+}
+
+@keyframes header-rotate {
+  0%,
+  45% {
+    opacity: 1;
+    transform: none;
+  }
+  50% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  51%,
+  95% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* With reduced motion, show both lines at once instead of alternating. */
+@media (width < 43.75rem) and (prefers-reduced-motion: reduce) {
+  .header-rotator > * {
+    grid-area: auto;
+    animation: none;
+    font-size: var(--text-caption);
+    line-height: 1.2;
+  }
+}
