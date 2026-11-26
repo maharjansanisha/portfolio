@@ -16,7 +16,7 @@ type CellProps = {
 
 function Cell({ word, className, children }: CellProps) {
   return (
-    <li data-tile={word} className={cn("min-h-0 min-w-0", className)}>
+    <li data-tile={word} className={cn("min-h-0 min-w-0 max-[20rem]:col-span-2", className)}>
       {children}
     </li>
   );
@@ -26,13 +26,16 @@ function Cell({ word, className, children }: CellProps) {
  * Phone: 2 columns, with a shorter last row.
  * Tablet: 12 columns and 3 rows; the last row's tiles are 200px tall.
  * Laptop: 12 columns and 4 half-rows, so the last two tiles stack.
+ *
+ * Under 20rem (a very narrow screen or large text) two columns cannot hold the
+ * labels, so every tile takes a full row and the page grows to fit.
  */
 const shortRow = "tablet:h-50";
 
 export function HomeGrid() {
   return (
-    <nav aria-label="Primary" className="relative z-10 min-h-0 flex-1">
-      <ul className="grid h-full grid-cols-2 grid-rows-[repeat(3,minmax(0,1fr))_minmax(0,0.8fr)] gap-3 tablet:grid-cols-12 tablet:grid-rows-3 tablet:gap-tile laptop:grid-rows-4">
+    <nav aria-label="Primary" className="relative z-10 min-h-0 flex-1 max-[20rem]:flex-none">
+      <ul className="grid h-full grid-cols-2 grid-rows-[repeat(3,minmax(0,1fr))_minmax(0,0.8fr)] gap-3 tablet:grid-cols-12 tablet:grid-rows-3 tablet:gap-tile laptop:grid-rows-4 max-[20rem]:auto-rows-[minmax(10rem,auto)] max-[20rem]:grid-rows-none">
         <Cell word="about" className="col-span-2 tablet:col-span-6 laptop:col-span-3 laptop:row-span-2">
           <LinkTile href="/about" label="About" />
         </Cell>

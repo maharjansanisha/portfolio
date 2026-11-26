@@ -6,7 +6,10 @@
     --focus-offset: 3px;
   }
 
-  /* Opt-in override, for a future theme control. */
+  /*
+   * A chosen theme overrides the system preference. `ThemeToggle` sets
+   * `data-theme`, and the script from `lib/theme.ts` restores a saved choice.
+   */
   :root[data-theme="light"] {
     color-scheme: light;
   }

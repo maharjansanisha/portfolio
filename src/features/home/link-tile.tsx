@@ -3,7 +3,7 @@ import Link from "next/link";
 import { RollText } from "@/components/ui/roll-text";
 import { cn } from "@/lib/cn";
 
-import { tileClasses, tileLabelClasses } from "./tile";
+import { tileClasses, tileInsetClasses, tileLabelClasses } from "./tile";
 
 type LinkTileProps = {
   href: string;
@@ -24,8 +24,9 @@ function Arrow() {
 export function LinkTile({ href, label }: LinkTileProps) {
   return (
     // Prefetch is off until these routes exist.
-    <Link href={href} prefetch={false} className={cn(tileClasses, "group justify-end p-6 tablet:p-8")}>
-      <span className="flex h-5.5 items-center justify-between gap-2">
+    <Link href={href} prefetch={false} className={cn(tileClasses, "group justify-end", tileInsetClasses)}>
+      {/* If the label and arrow cannot share a line, the arrow moves below. */}
+      <span className="flex min-h-5.5 flex-wrap items-center justify-between gap-x-2">
         <RollText className={cn("self-start", tileLabelClasses)}>{label}</RollText>
         <span aria-hidden="true">
           <Arrow />

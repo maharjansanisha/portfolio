@@ -6,7 +6,7 @@ import "@/features/home/home.css";
 
 export default function HomePage() {
   return (
-    <div className="mx-auto flex h-svh min-h-200 w-full max-w-page flex-col tablet:gap-4">
+    <div className="mx-auto flex h-svh min-h-200 w-full max-w-page flex-col max-[20rem]:h-auto tablet:gap-4">
       <a
         href="#content"
         className="sr-only rounded-control bg-ink px-4 py-3 text-label text-canvas focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-30"
@@ -17,7 +17,7 @@ export default function HomePage() {
       <main
         id="content"
         tabIndex={-1}
-        className="home-stage relative flex min-h-0 flex-1 flex-col px-4 pt-17 pb-4 tablet:pt-15 laptop:pt-20 desktop:pt-25"
+        className="home-stage relative flex min-h-0 flex-1 flex-col max-[20rem]:flex-none px-4 pt-17 pb-4 tablet:pt-15 laptop:pt-20 desktop:pt-25"
       >
         <HeroTitle />
         <HomeGrid />

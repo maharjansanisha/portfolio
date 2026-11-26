@@ -32,7 +32,7 @@ The reference is the owner's Framer project, "Maharjan Sanisha". Its visual lang
 [Open Sauce](https://github.com/marcologous/Open-Sauce-Fonts) under the SIL Open Font License 1.1, self-hosted through `next/font/local` in `src/config/fonts.ts`. Files and licences are in `public/fonts/open-sauce/`.
 
 - `font-sans`: Open Sauce Sans 400, 500, 600.
-- `font-display`: Open Sauce Two 500, for `display` only.
+- `font-display`: Open Sauce Two 500, for large display text: `text-display`, and the homepage title, which pairs it with `text-hero`.
 
 Only Latin, upright faces are included. Font synthesis is off, so weights or italics that are not loaded are not faked. Add a font file before using one.
 
@@ -52,7 +52,7 @@ Each `text-*` utility sets size, line height, tracking and weight. Fluid sizes r
 | Label | `text-label` | 14 | 1.4 | -0.005em | 500 |
 | Caption | `text-caption` | 12 | 1.4 | 0 | 500 |
 
-`text-hero` is the homepage title only. It follows the reference's steps instead of scaling fluidly: 48px, then 100px from 700px, 130px from 1024px and 160px from 1440px.
+`text-hero` is the homepage title only. It follows the reference's steps instead of scaling fluidly: 48px, then 100px from 700px, 130px from 1024px and 160px from 1440px. These figures and the breakpoints assume a 16px root size; both are set in `rem`. Under 700px the title is also limited to what the screen can hold, so at large text sizes on a phone it grows by less than the rest of the text.
 
 Use lead for one introductory statement per page, and caption for short metadata only. Weights are `font-regular`, `font-medium` and `font-semibold`.
 
@@ -199,6 +199,7 @@ Conventions:
 
 - Type sizes scale fluidly; spacing, tile radius and grid columns change at breakpoints.
 - Fluid sizes include a `rem` term, so they respond to the user's font size and to zoom.
+- Under 20rem (320px at the default text size, or a wider screen with larger text) the homepage tiles take one column and the page grows to fit them. Tile padding also narrows with the screen, and a tile's arrow moves below its label if both do not fit on one line.
 - The primitives were checked at 320, 390, 700, 1024 and 1440px with no horizontal scrolling. Real page content still needs its own check; very long words at display size can overflow a phone.
 
 ## Motion
@@ -221,6 +222,16 @@ Conventions:
 No animation library is installed.
 
 The homepage's title entrance, title swap, tool marquee and phone header rotation are CSS, in `src/features/home/home.css`. The title swap runs from 1024px.
+
+### Header role rotation
+
+`RoleRotator`, in `src/components/layout/`, uses JavaScript to show the roles in `siteConfig.roles` one at a time, in order. CSS transitions move and fade them.
+
+- From 700px a timer changes the role every 2.8 seconds.
+- Under 700px the role shares one slot with the local time. CSS swaps the two every 3 seconds, and the role changes while hidden, using the other item's `animationiteration` event. Each new role therefore appears every 6 seconds.
+- With reduced motion, the rotator checks the preference itself: it starts no timer or event listener and shows the first role. Under 700px, the role and time then appear together. The first role also shows before the page hydrates.
+- Assistive technology gets all the roles as one fixed line, so changes are not announced.
+- By design there is no pause or stop control. This is an accepted limitation, so do not claim that the header meets WCAG 2.2.2, Pause, Stop, Hide.
 
 ## Deferred
 

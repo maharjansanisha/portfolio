@@ -91,9 +91,13 @@
   --text-hero--font-weight: 500;
 }
 
-/* 48, 100, 130 and 160px. */
+/*
+ * 48, 100, 130 and 160px. The title is one word and cannot wrap, so on phones it
+ * grows only as far as the screen, less its 1rem side insets, can hold. The word
+ * is about 3.6 times as wide as the font size.
+ */
 :root {
-  --hero-size: 3rem;
+  --hero-size: min(3rem, (100vw - 2rem) / 3.7);
 }
 
 @media (width >= 43.75rem) {
